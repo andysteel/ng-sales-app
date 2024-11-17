@@ -1,0 +1,23 @@
+<mat-card class="supplier-card">
+    <mat-card-content [routerLink]="['/suppliers/show', supplier().id]">
+        <mat-card-subtitle>{{ supplier().companyName }}</mat-card-subtitle>
+        <span>{{ supplier().contactName }}</span
+        ><br />
+        <span>{{ supplier().address.phone }}</span
+        ><br />
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button
+            mat-icon-button
+            [routerLink]="['/suppliers/edit', supplier().id]"
+        >
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button
+            mat-icon-button
+            [routerLink]="['/suppliers/delete', supplier().id]"
+        >
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

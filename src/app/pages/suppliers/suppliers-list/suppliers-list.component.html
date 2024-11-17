@@ -1,0 +1,16 @@
+<mat-card-subtitle>Listing all Suppliers</mat-card-subtitle>
+
+@if (supplierSignal()) {
+    <div class="container wrap">
+        @for (supplier of supplierSignal(); track supplier.id) {
+            <app-supplier-card [supplier]="supplier"></app-supplier-card>
+        } @empty {
+            <span>No suppliers found</span>
+        }
+    </div>
+} @else {
+    <loading-bar [visible]="supplierSignal() === undefined"></loading-bar>
+}
+<mat-card-actions align="end">
+    <button mat-button [routerLink]="['/suppliers/new']">New</button>
+</mat-card-actions>

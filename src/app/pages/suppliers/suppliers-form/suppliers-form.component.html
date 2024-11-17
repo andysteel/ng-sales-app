@@ -1,0 +1,96 @@
+<form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <mat-form-field class="item">
+            <input
+                matInput
+                formControlName="companyName"
+                placeholder="Company Name"
+            />
+            @if (supplierForm.controls["companyName"].hasError("required")) {
+                <mat-error>Company Name is required</mat-error>
+            }
+            @if (supplierForm.controls["companyName"].hasError("minlength")) {
+                <mat-error
+                    >Company Name must have at least 3 characters</mat-error
+                >
+            }
+        </mat-form-field>
+    </div>
+    <div class="container">
+        <mat-form-field class="item">
+            <input
+                matInput
+                formControlName="contactName"
+                placeholder="Contact Name"
+            />
+            @if (supplierForm.controls["contactName"].hasError("required")) {
+                <mat-error>Contact Name is required</mat-error>
+            }
+            @if (supplierForm.controls["contactName"].hasError("minlength")) {
+                <mat-error
+                    >Contact Name must have at least 3 characters</mat-error
+                >
+            }
+        </mat-form-field>
+    </div>
+    <div class="container">
+        <mat-form-field class="item">
+            <input
+                matInput
+                formControlName="contactTitle"
+                placeholder="Contact Title"
+            />
+            @if (supplierForm.controls["contactTitle"].hasError("required")) {
+                <mat-error>Contact Title is required</mat-error>
+            }
+            @if (supplierForm.controls["contactTitle"].hasError("minlength")) {
+                <mat-error
+                    >Contact Title must have at least 3 characters</mat-error
+                >
+            }
+        </mat-form-field>
+    </div>
+    <br />
+    <mat-card-subtitle>Address</mat-card-subtitle>
+    <div class="container" formGroupName="address">
+        <mat-form-field class="item">
+            <input matInput formControlName="street" placeholder="Street" />
+        </mat-form-field>
+    </div>
+    <div class="container" formGroupName="address">
+        <mat-form-field class="item">
+            <input matInput formControlName="city" placeholder="City" />
+        </mat-form-field>
+        <mat-form-field class="item">
+            <input matInput formControlName="region" placeholder="Region" />
+        </mat-form-field>
+        <mat-form-field class="item">
+            <input matInput formControlName="country" placeholder="Country" />
+        </mat-form-field>
+    </div>
+    <div class="container" formGroupName="address">
+        <mat-form-field class="item">
+            <input
+                matInput
+                formControlName="postalCode"
+                placeholder="Postal Code"
+            />
+        </mat-form-field>
+        <mat-form-field class="item">
+            <input matInput formControlName="phone" placeholder="Phone" />
+        </mat-form-field>
+    </div>
+
+    <mat-card-actions align="end">
+        <button mat-button (click)="onBack($event)">Back</button>
+        <div class="width-full"></div>
+        <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="supplierForm.invalid"
+        >
+            Save
+        </button>
+    </mat-card-actions>
+</form>

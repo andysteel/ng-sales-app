@@ -1,0 +1,8 @@
+<mat-card-subtitle>Create Supplier</mat-card-subtitle>
+<loading-bar [visible]="loading"></loading-bar>
+<br />
+<app-suppliers-form
+    [supplier]="supplier"
+    (save)="onSave($event)"
+    (back)="onBack()"
+></app-suppliers-form>

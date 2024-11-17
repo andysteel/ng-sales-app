@@ -1,0 +1,33 @@
+@if (productsSignal()) {
+  <loading-bar [visible]="loading()"></loading-bar>
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="mt-10">
+    <div class="container">
+      <mat-form-field class="width-full">
+        <input matInput formControlName="search" placeholder="Search" />
+      </mat-form-field>
+      <div class="pt-10">
+        <button mat-button type="submit">Search</button>
+      </div>
+    </div>
+  </form>
+  <div class="container wrap">
+    @for (item of [].constructor(100); track $index) {
+      <div style="height: 100px; width: 100%">{{ $index }}</div>
+    }
+    @for (product of productsSignal()!; track product.id) {
+      @defer (on viewport) {
+        <app-product-card [product]="product" (onAddToCart)="addToCart($event)"></app-product-card>
+      } @placeholder {
+        <div class="container center">
+          <div class="item-100">No products found</div>
+        </div>
+      } @loading (minimum 5s) {
+        <div class="container center">
+          <div class="item-100">Loading...</div>
+        </div>
+      }
+    }
+  </div>
+} @else {
+  <loading-bar [visible]="productsSignal() === undefined"></loading-bar>
+}

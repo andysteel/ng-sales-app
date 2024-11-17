@@ -1,0 +1,49 @@
+@if (supplier()) {
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{ supplier()?.companyName }}</mat-card-title>
+            <mat-card-subtitle>{{ supplier()?.contactName }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div>
+                <dl>
+                    <dt>Street</dt>
+                    <dd>{{ supplier()?.address?.street }}</dd>
+                </dl>
+                <dl>
+                    <dt>Location</dt>
+                    <dd>
+                        {{ supplier()?.address?.city }},
+                        {{ supplier()?.address?.region }} -
+                        {{ supplier()?.address?.country }}
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>Postal Code</dt>
+                    <dd>{{ supplier()?.address?.postalCode }}</dd>
+                </dl>
+                <dl>
+                    <dt>Phone</dt>
+                    <dd>{{ supplier()?.address?.phone }}</dd>
+                </dl>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-button [routerLink]="['/suppliers']">Back</button>
+            <button
+                mat-button
+                [routerLink]="['/suppliers/edit/', supplier()?.id]"
+            >
+                Edit
+            </button>
+            <button
+                mat-button
+                [routerLink]="['/suppliers/del/', supplier()?.id]"
+            >
+                Delete
+            </button>
+        </mat-card-actions>
+    </mat-card>
+} @else {
+    <loading-bar [visible]="supplier() === undefined"></loading-bar>
+}

@@ -1,0 +1,15 @@
+<mat-card-subtitle>Edit Supplier</mat-card-subtitle>
+
+<br />
+
+@if (supplierSignal()) {
+    <mat-card-content>
+        <app-suppliers-form
+            [supplier]="supplierSignal()!"
+            (save)="onSave($event)"
+            (back)="onBack()"
+        ></app-suppliers-form>
+    </mat-card-content>
+} @else {
+    <loading-bar [visible]="supplierSignal() === undefined"></loading-bar>
+}
